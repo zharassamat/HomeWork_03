@@ -1,5 +1,6 @@
 package otus.homework.flowcats
 
+import android.util.Log
 import androidx.lifecycle.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
@@ -17,7 +18,7 @@ class CatsViewModel(
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 catsRepository.listenForCatFacts().collect {
-                    _catsLiveData.value = it
+                    _catsLiveData.postValue(it)
                 }
             }
         }
