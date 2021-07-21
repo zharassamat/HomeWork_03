@@ -19,12 +19,13 @@ class MainActivity : AppCompatActivity() {
         lifecycleScope.launchWhenCreated {
             catsViewModel.catsState.collect {
                 when (it) {
-                    is Result.Success<*> -> {
-                        view.populate(it.data as Fact)
+                    is Result.Success -> {
+                        view.populate(it.data)
                     }
                     is Result.Error -> {
                         view.errorMessage(it.message)
                     }
+                    is Result.Initial -> {}
                 }
             }
         }

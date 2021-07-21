@@ -12,10 +12,7 @@ class CatsViewModel(
     private val catsRepository: CatsRepository
 ) : ViewModel() {
 
-    private val _catsLiveData = MutableLiveData<Fact>()
-    val catsLiveData: LiveData<Fact> = _catsLiveData
-
-    private val _catsState = MutableStateFlow<Result>(Result.Success(Fact("")))
+    private val _catsState = MutableStateFlow<Result>(Result.Initial)
     val catsState: StateFlow<Result> = _catsState
 
     init {
